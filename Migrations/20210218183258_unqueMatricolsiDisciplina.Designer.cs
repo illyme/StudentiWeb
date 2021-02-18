@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentiWeb.Data;
 
 namespace StudentiWeb.Migrations
 {
     [DbContext(typeof(StudentiWebContext))]
-    partial class StudentiWebContextModelSnapshot : ModelSnapshot
+    [Migration("20210218183258_unqueMatricolsiDisciplina")]
+    partial class unqueMatricolsiDisciplina
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,13 +31,12 @@ namespace StudentiWeb.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nume")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("Nume")
-                        .IsUnique()
-                        .HasFilter("[Nume] IS NOT NULL");
+                    b.HasAlternateKey("Nume");
 
                     b.ToTable("Disciplina");
                 });
@@ -58,10 +59,9 @@ namespace StudentiWeb.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DisciplinaID");
+                    b.HasAlternateKey("StudentID", "DisciplinaID");
 
-                    b.HasIndex("StudentID", "DisciplinaID")
-                        .IsUnique();
+                    b.HasIndex("DisciplinaID");
 
                     b.ToTable("Nota");
                 });
@@ -84,8 +84,7 @@ namespace StudentiWeb.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("NrMatricol")
-                        .IsUnique();
+                    b.HasAlternateKey("NrMatricol");
 
                     b.ToTable("Student");
                 });

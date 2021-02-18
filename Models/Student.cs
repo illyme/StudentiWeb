@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StudentiWeb.Models
@@ -11,7 +12,10 @@ namespace StudentiWeb.Models
         public string Nume { get; set; }
         public string Prenume { get; set; }
         
-        [Column(TypeName = "decimal(6,0)")]
-        public decimal NrMatricol { get; set; }
+        public int NrMatricol { get; set; }
+
+        public ICollection<Nota> Note { get; set; }
+
+        public string NumeSiPrenume { get { return Nume + " " + Prenume; } }
     }
 }

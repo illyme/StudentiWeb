@@ -21,5 +21,17 @@ namespace StudentiWeb.Data
 
         public DbSet<StudentiWeb.Models.Student> Student { get; set; }
         public DbSet<StudentiWeb.Models.Disciplina> Disciplina { get; set; }
+        public DbSet<StudentiWeb.Models.Nota> Nota { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Nota>().HasIndex(e => new { e.StudentID, e.DisciplinaID }).IsUnique();
+
+            modelBuilder.Entity<Student>().HasIndex(e => e.NrMatricol).IsUnique();
+
+            modelBuilder.Entity<Disciplina>().HasIndex(e => e.Nume).IsUnique();
+        }
     }
 }

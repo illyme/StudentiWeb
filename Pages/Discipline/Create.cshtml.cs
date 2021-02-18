@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using StudentiWeb.Data;
 using StudentiWeb.Models;
 
@@ -37,7 +38,21 @@ namespace StudentiWeb.Pages.Discipline
             }
 
             _context.Disciplina.Add(Disciplina);
-            await _context.SaveChangesAsync();
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException se)
+            {
+                if (se.InnerException.Message.Contains("IX_Disciplina_Nume"))
+                {
+                    this.ModelState.AddModelError("", "Numele disciplinei trebuie sa fie unic");
+                    return OnGet();
+                }
+                throw;
+            }
+
 
             return RedirectToPage("./Index");
         }

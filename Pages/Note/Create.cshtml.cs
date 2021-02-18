@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using StudentiWeb.Data;
 using StudentiWeb.Models;
 
-namespace StudentiWeb.Pages.Studenti
+namespace StudentiWeb.Pages.Note
 {
     public class CreateModel : PageModel
     {
@@ -22,11 +23,13 @@ namespace StudentiWeb.Pages.Studenti
 
         public IActionResult OnGet()
         {
+        ViewData["DisciplinaID"] = new SelectList(_context.Disciplina, "ID", "Nume");
+        ViewData["StudentID"] = new SelectList(_context.Student, "ID", "NumeSiPrenume");
             return Page();
         }
 
         [BindProperty]
-        public Student Student { get; set; }
+        public Nota Nota { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -37,7 +40,7 @@ namespace StudentiWeb.Pages.Studenti
                 return Page();
             }
 
-            _context.Student.Add(Student);
+            _context.Nota.Add(Nota);
 
             try
             {
@@ -45,13 +48,14 @@ namespace StudentiWeb.Pages.Studenti
             }
             catch (DbUpdateException se)
             {
-                if (se.InnerException.Message.Contains("IX_Student_NrMatricol"))
+                if (se.InnerException.Message.Contains("IX_Nota_StudentID_DisciplinaID"))
                 {
-                    this.ModelState.AddModelError("", "Numarul matricol trebuie sa fie unic");
+                    this.ModelState.AddModelError("", "Nu putem adauga aceeasi nota de 2 ori");
                     return OnGet();
                 }
                 throw;
             }
+
 
             return RedirectToPage("./Index");
         }

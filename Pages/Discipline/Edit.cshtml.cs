@@ -50,10 +50,13 @@ namespace StudentiWeb.Pages.Discipline
 
             _context.Attach(Disciplina).State = EntityState.Modified;
 
+
             try
             {
                 await _context.SaveChangesAsync();
             }
+
+
             catch (DbUpdateConcurrencyException)
             {
                 if (!DisciplinaExists(Disciplina.ID))
@@ -64,6 +67,16 @@ namespace StudentiWeb.Pages.Discipline
                 {
                     throw;
                 }
+            }
+
+            catch (DbUpdateException se)
+            {
+                if (se.InnerException.Message.Contains("IX_Disciplina_Nume"))
+                {
+                    this.ModelState.AddModelError("", "Numele disciplinei trebuie sa fie unic");
+                    return await OnGetAsync(Disciplina.ID);
+                }
+                throw;
             }
 
             return RedirectToPage("./Index");

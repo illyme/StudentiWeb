@@ -1,0 +1,43 @@
+﻿@page
+@model StudentiWeb.Pages.Note.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Nota</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+
+            <div class="form-group">
+                <label asp-for="Nota.StudentID" class="control-label"></label>
+                <select asp-for="Nota.StudentID" class="form-control" asp-items="ViewBag.StudentID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nota.DisciplinaID" class="control-label"></label>
+                <select asp-for="Nota.DisciplinaID" class="form-control" asp-items="ViewBag.DisciplinaID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nota.Valoare_nota" class="control-label"></label>
+                <input asp-for="Nota.Valoare_nota" class="form-control" />
+                <span asp-validation-for="Nota.Valoare_nota" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

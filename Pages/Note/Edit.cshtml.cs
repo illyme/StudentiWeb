@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using StudentiWeb.Data;
 using StudentiWeb.Models;
 
-namespace StudentiWeb.Pages.Studenti
+namespace StudentiWeb.Pages.Note
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace StudentiWeb.Pages.Studenti
         }
 
         [BindProperty]
-        public Student Student { get; set; }
+        public Nota Nota { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,16 @@ namespace StudentiWeb.Pages.Studenti
                 return NotFound();
             }
 
-            Student = await _context.Student.FirstOrDefaultAsync(m => m.ID == id);
+            Nota = await _context.Nota
+                .Include(n => n.Disciplina)
+                .Include(n => n.Student).FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Student == null)
+            if (Nota == null)
             {
                 return NotFound();
             }
+           ViewData["DisciplinaID"] = new SelectList(_context.Disciplina, "ID", "Nume");
+           ViewData["StudentID"] = new SelectList(_context.Student, "ID", "NumeSiPrenume");
             return Page();
         }
 
@@ -48,7 +52,7 @@ namespace StudentiWeb.Pages.Studenti
                 return Page();
             }
 
-            _context.Attach(Student).State = EntityState.Modified;
+            _context.Attach(Nota).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +60,7 @@ namespace StudentiWeb.Pages.Studenti
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(Student.ID))
+                if (!NotaExists(Nota.ID))
                 {
                     return NotFound();
                 }
@@ -65,22 +69,13 @@ namespace StudentiWeb.Pages.Studenti
                     throw;
                 }
             }
-            catch (DbUpdateException se)
-            {
-                if (se.InnerException.Message.Contains("IX_Student_NrMatricol"))
-                {
-                    this.ModelState.AddModelError("", "Numarul matricol trebuie sa fie unic");
-                    return await OnGetAsync(Student.ID);
-                }
-                throw;
-            }
 
             return RedirectToPage("./Index");
         }
 
-        private bool StudentExists(int id)
+        private bool NotaExists(int id)
         {
-            return _context.Student.Any(e => e.ID == id);
+            return _context.Nota.Any(e => e.ID == id);
         }
     }
 }
