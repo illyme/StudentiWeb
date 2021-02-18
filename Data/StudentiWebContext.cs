@@ -14,6 +14,12 @@ namespace StudentiWeb.Data
         {
         }
 
+        public StudentiWebContext(DbSet<Disciplina> disciplina)
+        {
+            Disciplina = disciplina;
+        }
+
         public DbSet<StudentiWeb.Models.Student> Student { get; set; }
+        public DbSet<StudentiWeb.Models.Disciplina> Disciplina { get; set; }
     }
 }
