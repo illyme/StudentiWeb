@@ -2,10 +2,10 @@
 @model StudentiWeb.Pages.Note.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalii nota";
 }
 
-<h1>Details</h1>
+<h1>Detalii nota</h1>
 
 <div>
     <h4>Nota</h4>
@@ -32,6 +32,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Nota.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Nota.ID">Modifica</a> |
+    <a asp-page="./Index">Inapoi la lista</a>
 </div>

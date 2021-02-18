@@ -2,12 +2,12 @@
 @model StudentiWeb.Pages.Note.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Sterge nota";
 }
 
-<h1>Delete</h1>
+<h1>Sterge nota</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Sunteti sigur?</h3>
 <div>
     <h4>Nota</h4>
     <hr />
@@ -34,7 +34,7 @@
     
     <form method="post">
         <input type="hidden" asp-for="Nota.ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="Sterge" class="btn btn-danger" /> |
+        <a asp-page="./Index">Inapoi la lista</a>
     </form>
 </div>

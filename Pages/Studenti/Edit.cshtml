@@ -2,10 +2,10 @@
 @model StudentiWeb.Pages.Studenti.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modifica student";
 }
 
-<h1>Edit</h1>
+<h1>Modifica student</h1>
 
 <h4>Student</h4>
 <hr />
@@ -30,14 +30,14 @@
                 <span asp-validation-for="Student.NrMatricol" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Modifica" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Inapoi la lista</a>
 </div>
 
 @section Scripts {

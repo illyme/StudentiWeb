@@ -2,10 +2,10 @@
 @model StudentiWeb.Pages.Discipline.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalii";
 }
 
-<h1>Details</h1>
+<h1>Detalii disciplina</h1>
 
 <div>
     <h4>Disciplina</h4>
@@ -26,6 +26,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Disciplina.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Disciplina.ID">Modifica</a> |
+    <a asp-page="./Index">Inapoi la lista</a>
 </div>

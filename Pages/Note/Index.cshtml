@@ -2,13 +2,13 @@
 @model StudentiWeb.Pages.Note.IndexModel
 
 @{
-    ViewData["Title"] = "Note";
+    ViewData["Title"] = "Mentenanta note";
 }
 
-<h1>Index</h1>
+<h1>Lista note</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Adauga nota</a>
 </p>
 <table class="table">
     <thead>
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.Disciplina.Nume)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Modifica</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalii</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Sterge</a>
             </td>
         </tr>
 }
