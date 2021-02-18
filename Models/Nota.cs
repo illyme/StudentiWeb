@@ -10,7 +10,8 @@ namespace StudentiWeb.Models
     public class Nota
     {
         public int ID { get; set; }
-        
+
+
         public int StudentID { get; set; }
 
         public int DisciplinaID { get; set; }

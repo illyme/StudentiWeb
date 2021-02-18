@@ -9,6 +9,7 @@ namespace StudentiWeb.Models
 
         [Display(Name = "Nume disciplina")]
         public string Nume { get; set; }
+        
         public string Cod { get; set; }
 
         public ICollection<Nota> Note { get; set; }
