@@ -5,14 +5,14 @@
     ViewData["Title"] = "Adauga";
 }
 
-<h4>Adauga nota</h4>
+<h1>Adauga nota</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
 
             <div class="form-group">
-                <label asp-for="Nota.StudentID" class="control-label"></label>
+                <label asp-for="Nota.StudentID" class="control-label">Nume student</label>
                 <select asp-for="Nota.StudentID" class="form-control" asp-items="ViewBag.StudentID"></select>
             </div>
             <div class="form-group">
@@ -28,13 +28,14 @@
             <div class="form-group">
                 <input type="submit" value="Adauga" class="btn btn-primary" />
             </div>
+            <div>
+                <a asp-page="Index">Inapoi la lista</a>
+            </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Inapoi la lista</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

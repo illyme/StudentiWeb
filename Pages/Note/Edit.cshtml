@@ -5,7 +5,8 @@
     ViewData["Title"] = "Modifica nota";
 }
 
-<h4>Modifica nota</h4>
+<h1>Modifica nota</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -13,7 +14,7 @@
 
             <input type="hidden" asp-for="Nota.ID" />
             <div class="form-group">
-                <label asp-for="Nota.StudentID" class="control-label"></label>
+                <label asp-for="Nota.StudentID" class="control-label">Nume student</label>
                 <span class="form-control" readonly="readonly">
                     @Model.Nota.Student.NumeSiPrenume
                 </span>

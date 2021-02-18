@@ -50,7 +50,7 @@ namespace StudentiWeb.Pages.Note
             {
                 if (se.InnerException.Message.Contains("IX_Nota_StudentID_DisciplinaID"))
                 {
-                    this.ModelState.AddModelError("", "Nu putem adauga aceeasi nota de 2 ori");
+                    this.ModelState.AddModelError("", "Nota la aceasta materie exista deja");
                     return OnGet();
                 }
                 throw;

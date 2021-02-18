@@ -5,8 +5,10 @@
     ViewData["Title"] = "Sterge student";
 }
 
+<h1>Sterge student</h1>
+
 <div>
-    <h4>Sterge student</h4>
+
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -28,7 +30,7 @@
             @Html.DisplayFor(model => model.Student.NrMatricol)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Student.ID" />
         <input type="submit" value="Sterge" class="btn btn-danger" /> |

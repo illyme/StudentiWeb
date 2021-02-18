@@ -5,8 +5,9 @@
     ViewData["Title"] = "Sterge nota";
 }
 
+<h1>Sterge nota</h1>
+
 <div>
-    <h4>Sterge nota</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -28,7 +29,7 @@
             @Html.DisplayFor(model => model.Nota.Disciplina.Nume)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Nota.ID" />
         <input type="submit" value="Sterge" class="btn btn-danger" /> |
